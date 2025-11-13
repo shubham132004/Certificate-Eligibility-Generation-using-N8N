@@ -76,11 +76,11 @@ It consists of **two main workflows**:
 
 ## 💡 Key Features
 
-✅ Fully automated eligibility evaluation  
-✅ Dynamic and personalized email notifications  
-✅ Real-time integration with Google Sheets and Gmail  
-✅ Zero manual effort required  
-✅ Transparent and scalable system for academic certification  
+-  Fully automated eligibility evaluation  
+-  Dynamic and personalized email notifications  
+-  Real-time integration with Google Sheets and Gmail  
+-  Zero manual effort required  
+-  Transparent and scalable system for academic certification  
 
 ---
 
