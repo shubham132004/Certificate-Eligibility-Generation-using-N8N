@@ -1,0 +1,548 @@
+{
+  "name": "Certificate Eligibility 1",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1pI4Y3HyfitovCTxMXEe1uTe7Oj1kBjzdLvDQHx3u3_w",
+          "mode": "list",
+          "cachedResultName": "Certificate Eligibility",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pI4Y3HyfitovCTxMXEe1uTe7Oj1kBjzdLvDQHx3u3_w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1079939963,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pI4Y3HyfitovCTxMXEe1uTe7Oj1kBjzdLvDQHx3u3_w/edit#gid=1079939963"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        0
+      ],
+      "id": "615314f6-9ae4-4cee-afb2-d87c2b289c54",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "ew22qaNqNud6jWYQ",
+          "name": "Google Sheets Trigger account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "77a9a263-1d05-4d81-ad30-60ef7e3e7b34",
+              "leftValue": "={{ $json['Monthly Assessment Marks (out of 100)'] }}",
+              "rightValue": 80,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "e2bd9697-3d03-4697-b5d7-603157d3f6a0",
+              "leftValue": "={{ $json['Total Tasks Completed (out of 10)'] }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "721d4ddc-a5a3-409a-92cd-8662645b6f78",
+              "leftValue": "={{ $json['Total Assignments Completed (out of 10)'] }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "2d5609ab-582c-4673-80c7-0615f9e3e902",
+              "leftValue": "={{ $json['Quiz Marks (out of 100)'] }}",
+              "rightValue": 80,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "1eb64a83-7fda-404a-9156-14ab1ad0bd6c",
+              "leftValue": "={{ $json['Project Presentation Completed'] }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        -32
+      ],
+      "id": "81389309-ccbb-45c9-8537-c3f6afbe3624",
+      "name": "Gold"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "Certificate Eligibility",
+        "emailType": "text",
+        "message": "=Hello  {{ $json.Name }}\n  Congratulations! Based on your outstanding performance,  \nyou are eligible for the **Gold Certificate**.  \nKeep up the great work and continue shining! ✨ ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        16,
+        -112
+      ],
+      "id": "bdd48945-0d5a-44a0-848d-c498a8d1d537",
+      "name": "Gold Message",
+      "webhookId": "c1012e0c-4d95-40f4-b0d7-d319e318a1a4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TIHP3ljkGhZWOEMo",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "77a9a263-1d05-4d81-ad30-60ef7e3e7b34",
+              "leftValue": "={{ $json['Monthly Assessment Marks (out of 100)'] }}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "e2bd9697-3d03-4697-b5d7-603157d3f6a0",
+              "leftValue": "={{ $json['Total Tasks Completed (out of 10)'] }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "721d4ddc-a5a3-409a-92cd-8662645b6f78",
+              "leftValue": "={{ $json['Total Assignments Completed (out of 10)'] }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "2d5609ab-582c-4673-80c7-0615f9e3e902",
+              "leftValue": "={{ $json['Quiz Marks (out of 100)'] }}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "1eb64a83-7fda-404a-9156-14ab1ad0bd6c",
+              "leftValue": "={{ $json['Project Presentation Completed'] }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "eadec6c3-02fa-44b0-a2a6-a0bcaca6a653",
+              "leftValue": "={{ $json['Monthly Assessment Marks (out of 100)'] }}",
+              "rightValue": 80,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            },
+            {
+              "id": "705a34d6-0b43-4fc7-acba-13be18ce3bc0",
+              "leftValue": "={{ $json['Quiz Marks (out of 100)'] }}",
+              "rightValue": 80,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        32,
+        96
+      ],
+      "id": "16f1ab57-8ea9-4ee6-a701-c66e8d5a1f0a",
+      "name": "Silver"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "Certificate Eligibility",
+        "emailType": "text",
+        "message": "Hello {{ $json.Name }}\nGreat effort! Based on your results,  \nyou are eligible for the **Silver Certificate**.  \nKeep pushing forward — Gold is just one step away! 🏅\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        240,
+        0
+      ],
+      "id": "e27159bf-1863-4164-b16f-9f7116602b3d",
+      "name": "Silver Message",
+      "webhookId": "f870fbd0-04fb-4346-a76d-f84265e76b35",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TIHP3ljkGhZWOEMo",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "77a9a263-1d05-4d81-ad30-60ef7e3e7b34",
+              "leftValue": "={{ $json['Monthly Assessment Marks (out of 100)'] }}",
+              "rightValue": 40,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "e2bd9697-3d03-4697-b5d7-603157d3f6a0",
+              "leftValue": "={{ $json['Total Tasks Completed (out of 10)'] }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "721d4ddc-a5a3-409a-92cd-8662645b6f78",
+              "leftValue": "={{ $json['Total Assignments Completed (out of 10)'] }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "2d5609ab-582c-4673-80c7-0615f9e3e902",
+              "leftValue": "={{ $json['Quiz Marks (out of 100)'] }}",
+              "rightValue": 40,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "1eb64a83-7fda-404a-9156-14ab1ad0bd6c",
+              "leftValue": "={{ $json['Project Presentation Completed'] }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "eadec6c3-02fa-44b0-a2a6-a0bcaca6a653",
+              "leftValue": "={{ $json['Monthly Assessment Marks (out of 100)'] }}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            },
+            {
+              "id": "705a34d6-0b43-4fc7-acba-13be18ce3bc0",
+              "leftValue": "={{ $json['Quiz Marks (out of 100)'] }}",
+              "rightValue": 60,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        272
+      ],
+      "id": "e6ef10db-76cc-4a93-87fc-1ff6931b95d5",
+      "name": "Bronze"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "Certificate Eligibility",
+        "emailType": "text",
+        "message": "Hello {{ $json.Name }}\nWell done! You’ve qualified for the **Bronze Certificate**.  \nKeep practicing and improving to reach Silver or Gold levels next time! 💪\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        176
+      ],
+      "id": "105c8de4-0b81-4b57-86ff-46e78969af53",
+      "name": "Bronze Message",
+      "webhookId": "81f1ff6d-271c-4eaf-b9bb-f8897bd8e454",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TIHP3ljkGhZWOEMo",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "Certificate Eligibility",
+        "emailType": "text",
+        "message": "Hello {{ $json.Name }}\nThank you for your participation.  \nCurrently, you are **not eligible** for a certificate.  \nTo qualify, complete all tasks, assignments, and quizzes,  \nand improve your marks based on the given criteria.  \nYou’ve got this — keep trying! 💫 \n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        384
+      ],
+      "id": "1adc616b-0d21-4188-bda5-d8184ae3471f",
+      "name": "Not Eligible Message",
+      "webhookId": "81f1ff6d-271c-4eaf-b9bb-f8897bd8e454",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TIHP3ljkGhZWOEMo",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1z_lp0fSVZkFxsWATyiYBkzCqOChWQzgTeCpdb6L3l74",
+          "mode": "list",
+          "cachedResultName": "Student Enquiry",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1z_lp0fSVZkFxsWATyiYBkzCqOChWQzgTeCpdb6L3l74/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1z_lp0fSVZkFxsWATyiYBkzCqOChWQzgTeCpdb6L3l74/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        -272
+      ],
+      "id": "1e7dd4c6-7e2e-46af-8b42-6b7738f7e841",
+      "name": "Google Sheets Trigger1",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "ew22qaNqNud6jWYQ",
+          "name": "Google Sheets Trigger account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "Student Certificate Eligibility Form",
+        "emailType": "text",
+        "message": "=Hello  {{ $json.Name }}\n\nFill out the Google Form to check the certificate eligibility\nlink : https://docs.google.com/forms/d/e/1FAIpQLSd3c5bFQwiaZNAwjXxVBtA5EcJu6sCqEynHtKxObOQjCS4-vg/viewform?usp=header\n\nThank you!!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -160,
+        -272
+      ],
+      "id": "7be57572-582b-420c-b29a-cde2ee73a41e",
+      "name": "Send a message",
+      "webhookId": "71e21e04-1e13-419c-bd70-4494b149750c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TIHP3ljkGhZWOEMo",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Gold",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gold": {
+      "main": [
+        [
+          {
+            "node": "Gold Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Silver",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Silver": {
+      "main": [
+        [
+          {
+            "node": "Silver Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bronze",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bronze": {
+      "main": [
+        [
+          {
+            "node": "Bronze Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Not Eligible Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f6912468-87a8-460b-a76d-bc691e97e62a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c4e8019c8ddba6642de65f45e14e408175dcd56ffc274feec495a0d7e28340b2"
+  },
+  "id": "8bnH3KUTQ8uP1U58",
+  "tags": []
+}
