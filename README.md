@@ -101,11 +101,12 @@ You can find the exported n8n workflow JSON here: https://github.com/shubham1320
 ## 📸 Workflow Preview
 
 ### Workflow Overview
-![Workflow Screenshot](f40de742-3a38-42fb-8b29-dac8074905a2.png)
+<img width="528" height="294" alt="image" src="https://github.com/user-attachments/assets/8e8e562b-9875-4a06-8f13-531b27a6ce90" />
+
 
 ### Eligibility Logic (IF Node Conditions)
-![Eligibility Conditions](afa65b2a-dd16-4d9c-8a87-4bfe8f22e38c.png)
-![Eligibility Logic](6839aaf5-f061-4baf-a0d6-ae66fb933652.png)
+<img width="784" height="155" alt="image" src="https://github.com/user-attachments/assets/c891d824-914e-47db-83b3-7cfd66b88407" />
+
 
 ---
 
