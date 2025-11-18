@@ -74,6 +74,10 @@ It consists of **two main workflows**:
 
 ---
 
+📁 Workflow JSON File
+You can find the exported n8n workflow JSON here: https://github.com/shubham132004/Certificate-Eligibility-Generation-using-N8N/tree/main/JSON%20FILE
+
+---
 ## 💡 Key Features
 
 -  Fully automated eligibility evaluation  
